@@ -61,6 +61,8 @@ def add_new_blobs(boxes, classes, confidences, blobs, frame, tracker, mcdf):
     '''
     matched_blob_ids = []
     for i, box in enumerate(boxes):
+        #convert box to integers
+        box = list(map(int, box))
         _type = classes[i] if classes is not None else None
         _confidence = confidences[i] if confidences is not None else None
         _tracker = get_tracker(tracker, box, frame)

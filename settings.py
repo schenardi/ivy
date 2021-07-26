@@ -16,6 +16,9 @@ else:
     print('Path to video file not set.')
     ENVS_READY = False
 
+VIDEO = r"C:\Daten\OneDrive\Videos\DJMimo\DJI_20210122_084350_93_video.mp4"   #video 1 car
+VIDEO = r"C:\Daten\OneDrive\Videos\DJMimo\DJI_20210122_084215_92_video.mp4"   #video kreisel und 1 car
+
 # Specify a detection Region of Interest (ROI)
 # i.e a set of vertices that represent the area (polygon) where you want detections to be made
 # E.g [(750, 405), (1094, 398), (1569, 1028), (501, 1028)]
@@ -33,6 +36,9 @@ if USE_DROI:
         print('Invalid value for DROI. It should be a list of coordinates (2-tuples).')
         ENVS_READY = False
 
+
+    DROI=[(750, 105),(1094, 105),(1569, 1028),(701, 1028)]
+    DROI=[(280,150),(1600,150),(1600,250),(1150,350),(1700,1070),(1000,1070),(600,400),(280,400)]
 # Display/overlay the detection ROI on the video
 try:
     SHOW_DROI = ast.literal_eval(os.getenv('SHOW_DROI', 'False'))
@@ -108,6 +114,10 @@ if os.getenv('COUNTING_LINES'):
     except ValueError:
         print('Invalid value for COUNTING_LINES. It should be a list of lines.')
         ENVS_READY = False
+
+#line from x,y to x1,y1 where x=right, y=down (from top)
+COUNTING_LINES=[{'label': 'A', 'line': [(667, 413), (1423, 413)]}, {'label': 'B', 'line': [(667, 866), (1523, 868)]}]
+COUNTING_LINES=[{'label': 'B', 'line': [(667, 350), (1423, 350)]}, {'label': 'A', 'line': [(667, 866), (1523, 868)]}]
 
 # Configs for Haar Cascade detector
 if DETECTOR == 'haarcascade':
